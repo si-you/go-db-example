@@ -18,15 +18,29 @@ func main() {
 
 	c, err := mongo.NewClient(fmt.Sprintf("mongodb://%s", *mongoAddr))
 	if err != nil {
+		log.Fatalf("Mongo client creation failed: %v", err)
+	}
+
+	err = c.Connect(context.Background())
+	if err != nil {
 		log.Fatalf("Mongo connection failed: %v", err)
 	}
+	defer c.Disconnect(context.Background())
+
+	// List all databases.
+	ds, err := c.ListDatabaseNames(context.Background(), nil)
+	if err != nil {
+		log.Fatalf("Listing database failed: %v", err)
+	}
+	fmt.Printf("Available dbs: %v\n", ds)
+
 
 	collection := c.Database("users").Collection("info")
 	res, err := collection.InsertOne(context.Background(), map[string]string{"name": "siyou"})
 	if err != nil {
 		log.Fatalf("Insert failed: %v", err)
 	}
-	fmt.Printf("Insert response: %v", res)
+	fmt.Printf("Insert response: %v\n", res)
 
 	cur, err := collection.Find(context.Background(), nil)
 	if err != nil {
@@ -40,7 +54,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("Decoding failed: %v", err)
 		}
-		fmt.Printf("document: %v", d)
+		fmt.Printf("document: %v\n", d)
 	}
 
 	if cur.Err() != nil {
