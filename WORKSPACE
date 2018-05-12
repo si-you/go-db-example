@@ -7,10 +7,36 @@ git_repository(
 load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains", "go_repository")
 
 go_repository(
-  name = "github_com_mediocregopher_radix_v2",
+  name = "com_github_mediocregopher_radix_v2",
   importpath = "github.com/mediocregopher/radix.v2",
   commit = "596a3ed684d9390f4831d6800dffd6a6067933d5",
 )
+
+# Repos for mongo.
+go_repository(
+  name = "com_github_mongodb_mongo_go_driver",
+  importpath = "github.com/mongodb/mongo-go-driver",
+  commit = "ff5ad991913ea56c4609391ff190eaf83edf339b",
+)
+
+go_repository(
+  name = "com_github_go_stack_stack",
+  importpath = "github.com/go-stack/stack",
+  commit = "259ab82a6cad3992b4e21ff5cac294ccb06474bc",
+)
+
+go_repository(
+  name = "org_golang_x_sync",
+  importpath = "golang.org/x/sync",
+  commit = "1d60e4601c6fd243af51cc01ddf169918a5407ca",
+)
+
+go_repository(
+  name = "org_golang_x_crypto",
+  importpath = "golang.org/x/crypto",
+  commit = "2d027ae1dddd4694d54f7a8b6cbe78dca8720226",
+)
+
 
 go_rules_dependencies()
 go_register_toolchains()

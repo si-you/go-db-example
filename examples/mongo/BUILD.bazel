@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+
+go_binary(
+  name = "mongo_example",
+  srcs = ["main.go"],
+  deps = [
+    "@com_github_mongodb_mongo_go_driver//bson:go_default_library",
+    "@com_github_mongodb_mongo_go_driver//mongo:go_default_library",
+  ],
+  importpath = "github.com/si-you/go-db-example/examples/mongo",
+)
