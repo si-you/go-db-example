@@ -6,3 +6,8 @@ A minimal example shows how to use various dbs in Go + Bazel.
 ```
 bazel run examples/redis:redis_example
 ```
+
+*Mongo example*
+```
+bazel run examples/mongo:mongo_example
+```
