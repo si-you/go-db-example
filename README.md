@@ -11,3 +11,8 @@ bazel run examples/redis:redis_example
 ```
 bazel run examples/mongo:mongo_example
 ```
+
+*Kafka example*
+```
+bazel run examples/kafka:kafka_example
+```
