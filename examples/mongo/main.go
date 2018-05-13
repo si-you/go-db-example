@@ -34,7 +34,7 @@ func main() {
 	}
 	fmt.Printf("Available dbs: %v\n", ds)
 
-
+	// Insert a document.
 	collection := c.Database("users").Collection("info")
 	res, err := collection.InsertOne(context.Background(), map[string]string{"name": "siyou"})
 	if err != nil {
@@ -42,7 +42,11 @@ func main() {
 	}
 	fmt.Printf("Insert response: %v\n", res)
 
-	cur, err := collection.Find(context.Background(), nil)
+	// Find a document.
+	filter := bson.NewDocument(bson.EC.String("name", "siyou"))
+	fmt.Printf("Filter: %v\n", filter)
+
+	cur, err := collection.Find(context.Background(), filter)
 	if err != nil {
 		log.Fatalf("Full fetch failed: %v", err)
 	}
@@ -56,8 +60,14 @@ func main() {
 		}
 		fmt.Printf("document: %v\n", d)
 	}
-
 	if cur.Err() != nil {
 		log.Fatalf("Cur has an error: %v", cur.Err())
 	}
+
+	// Delete a document.
+	dRes, err := collection.DeleteMany(context.Background(), filter)
+	if err != nil {
+		log.Fatalf("Delete failed: %v", err)
+	}
+	fmt.Printf("Delete response: %v\n", *dRes)
 }
