@@ -7,5 +7,4 @@ go_binary(
   deps = [
     "@com_github_mediocregopher_radix_v2//redis:go_default_library",
   ],
-  importpath = "github.com/si-you/go-db-example/examples/redis",
 )

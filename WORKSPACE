@@ -1,7 +1,7 @@
 git_repository(
     name = "io_bazel_rules_go",
     remote = "https://github.com/bazelbuild/rules_go.git",
-    commit = "a390e7f7eac912f6e67dc54acf67aa974d05f9c3",
+    commit = "167cb55932c4a415edf839f750bdd7366f2f1613",
 )
 
 load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains", "go_repository")

@@ -8,5 +8,4 @@ go_binary(
     "@com_github_mongodb_mongo_go_driver//bson:go_default_library",
     "@com_github_mongodb_mongo_go_driver//mongo:go_default_library",
   ],
-  importpath = "github.com/si-you/go-db-example/examples/mongo",
 )
