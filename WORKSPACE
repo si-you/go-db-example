@@ -6,6 +6,7 @@ git_repository(
 
 load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains", "go_repository")
 
+# Repos for radix.
 go_repository(
   name = "com_github_mediocregopher_radix_v2",
   importpath = "github.com/mediocregopher/radix.v2",
@@ -37,6 +38,12 @@ go_repository(
   commit = "2d027ae1dddd4694d54f7a8b6cbe78dca8720226",
 )
 
+# Repos for kafka-go
+go_repository(
+  name = "com_github_segmentio_kafka_go",
+  importpath = "github.com/segmentio/kafka-go",
+  commit = "44a19ca9cf5925ba3c5153dd0d9e5b44e8dfd717",
+)
 
 go_rules_dependencies()
 go_register_toolchains()

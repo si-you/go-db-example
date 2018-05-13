@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+
+go_library(
+  name = "go_default_library",
+  srcs = ["kafka.go"],
+  deps = [
+    "@com_github_segmentio_kafka_go//:go_default_library",
+  ],
+  importpath = "github.com/si-you/go-db-example/examples/kafka",
+)
+
+go_binary(
+  name = "kafka_example",
+  srcs = ["main.go"],
+  deps = [
+    ":go_default_library",
+    "@com_github_segmentio_kafka_go//:go_default_library",
+  ],
+  importpath = "github.com/si-you/go-db-example/examples/kafka",
+)
