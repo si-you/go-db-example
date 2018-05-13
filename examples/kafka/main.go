@@ -4,15 +4,15 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"time"
 	kg "github.com/segmentio/kafka-go"
 	"github.com/si-you/go-db-example/examples/kafka"
+	"time"
 )
 
 var (
 	brokerAddr = flag.String("broker_addr", "localhost:9092", "Kafka broker addr.")
-	topic = flag.String("topic", "greetings", "Kafka topic name.")
-	groupId = flag.String("group_id", "siyou", "kafka consumer group id.")
+	topic      = flag.String("topic", "greetings", "Kafka topic name.")
+	groupId    = flag.String("group_id", "siyou", "kafka consumer group id.")
 )
 
 func main() {
@@ -20,18 +20,18 @@ func main() {
 
 	fmt.Printf("Creating a new writer..\n")
 	w := kg.NewWriter(kg.WriterConfig{
-		Brokers: []string{*brokerAddr},
-		Topic: *topic,
+		Brokers:  []string{*brokerAddr},
+		Topic:    *topic,
 		Balancer: &kg.LeastBytes{},
 	})
 
 	fmt.Printf("Creating a new reader..\n")
 	r := kg.NewReader(kg.ReaderConfig{
-		Brokers: []string{*brokerAddr},
-		GroupID: *groupId,
-		Topic:  *topic,
-		MinBytes: 1,
-		MaxBytes: 10e6,
+		Brokers:        []string{*brokerAddr},
+		GroupID:        *groupId,
+		Topic:          *topic,
+		MinBytes:       1,
+		MaxBytes:       10e6,
 		CommitInterval: time.Second,
 	})
 
