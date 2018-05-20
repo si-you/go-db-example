@@ -22,6 +22,7 @@ go_binary(
 go_image(
   name = "confluent_kafka_example_image",
   srcs = ["main.go"],
+  base = "@librdkafka//image",
   deps = [
     ":go_default_library",
     "@com_github_confluentinc_confluent_kafka_go//kafka:go_default_library",

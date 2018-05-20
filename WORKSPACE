@@ -65,6 +65,22 @@ http_archive(
     urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.4.0.tar.gz"],
 )
 
+
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_pull", "container_load",
+    container_repositories = "repositories",
+)
+
+# This is NOT needed when going through the language lang_image
+# "repositories" function(s).
+container_repositories()
+
+container_load(
+  name = "librdkafka",
+  file = "//third_party/librdkafka:librdkafka.tar",
+)
+
 load(
     "@io_bazel_rules_docker//go:image.bzl",
     _go_image_repos = "repositories",
