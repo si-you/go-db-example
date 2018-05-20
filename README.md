@@ -29,7 +29,13 @@ Tip) ./configure --prefix=/usr
 
 
 ```
-bazel run --linkopt=-lrdkafka examples/confluent_kafka:kafka_example
+bazel run --linkopt=-lrdkafka examples/confluent_kafka:confluent_kafka_example
 ```
 
-Confluent kafka image is failing right now, since the distroless go_image does not contain librdkafka.
+To build a container_image, run third_party/librdkafka/build.sh to prepare a base docker image as a tar file. Then,
+
+```
+sudo bazel run --linkopt=-lrdkafka examples/confluent_kafka:confluent_kafka_example_image
+```
+
+TODO(si-you): Make librdkafka image compact.. It's too large now.
