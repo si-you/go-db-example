@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+
+go_library(
+  name = "go_default_library",
+  srcs = ["confluent_kafka.go"],
+  deps = [
+    "@com_github_confluentinc_confluent_kafka_go//kafka:go_default_library",
+  ],
+  importpath = "github.com/si-you/go-db-example/examples/confluent_kafka",
+)
+
+go_binary(
+  name = "confluent_kafka_example",
+  srcs = ["main.go"],
+  deps = [
+    ":go_default_library",
+    "@com_github_confluentinc_confluent_kafka_go//kafka:go_default_library",
+  ],
+)
+
+go_image(
+  name = "confluent_kafka_example_image",
+  srcs = ["main.go"],
+  deps = [
+    ":go_default_library",
+    "@com_github_confluentinc_confluent_kafka_go//kafka:go_default_library",
+  ],
+  goos = "linux",
+)

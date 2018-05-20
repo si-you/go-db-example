@@ -45,6 +45,14 @@ go_repository(
   commit = "44a19ca9cf5925ba3c5153dd0d9e5b44e8dfd717",
 )
 
+# Repos for confluent-kafka
+# WARNING: This repo requires librdkafka installed in your system.
+go_repository(
+  name = "com_github_confluentinc_confluent_kafka_go",
+  importpath = "github.com/confluentinc/confluent-kafka-go",
+  commit = "5e4d04e05fc319ce5996a867aafef29059f26862",
+)
+
 go_rules_dependencies()
 go_register_toolchains()
 

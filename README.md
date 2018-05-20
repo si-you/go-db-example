@@ -21,3 +21,15 @@ To build a go_image
 ```
 bazel run -c opt examples/kafka:kafka_example_image
 ```
+
+*Confluent kafka example*
+
+You need to install librdkafka first.
+Tip) ./configure --prefix=/usr
+
+
+```
+bazel run --linkopt=-lrdkafka examples/confluent_kafka:kafka_example
+```
+
+Confluent kafka image is failing right now, since the distroless go_image does not contain librdkafka.
