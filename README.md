@@ -16,3 +16,8 @@ bazel run examples/mongo:mongo_example
 ```
 bazel run examples/kafka:kafka_example
 ```
+
+To build a go_image
+```
+bazel run -c opt examples/kafka:kafka_example_image
+```

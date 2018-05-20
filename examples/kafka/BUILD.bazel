@@ -18,3 +18,14 @@ go_binary(
     "@com_github_segmentio_kafka_go//:go_default_library",
   ],
 )
+
+go_image(
+  name = "kafka_example_image",
+  srcs = ["main.go"],
+  deps = [
+    ":go_default_library",
+    "@com_github_segmentio_kafka_go//:go_default_library",
+  ],
+  pure = "on",
+)
+
